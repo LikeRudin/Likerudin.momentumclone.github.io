@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="public/css/style.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quokka's Momentum</title>
+    <script src="https://kit.fontawesome.com/1865534860.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    <header>
+        <div class="weather">
+            <span class="weather__city"></span>
+            <span class="weather__weather"></span>
+        </div>
+        <div class="quokka">
+                <img class="quokka__image" src="public/images/fairy/0.jpg">
+                <div class="quokka__message__text">
+                    <h1 class="head-text">What is your name?</h1>
+                </div>
+        </div>
+        <div class="clock">
+            <h1 class="clock__time"></h1>
+        </div>
+    </header>
+
+    <main class="login-screen">
+        <form class="login-screen__form" id="loginForm">
+            <input class="login-screen__form__input" type="text" pattern="[a-zA-Z]{2,10}"
+              required placeholder="Let me know your name, Please enter 2 to 10 alphabets ">
+        </form>
+    </main>
+
+
+    <main class="main-screen">
+    
+        <nav class="nav-bar">
+            <ul class="nav-bar__btns">
+                <li class="nav-bar__link todo">
+                    <button><img src="public/images/nav/todoE.png" alt=""></button>
+                </li>
+                <li class="nav-bar__link calendar">
+                    <button><img src="public/images/nav/calendar.png" alt=""></button>
+                </li>
+                <li class="nav-bar__link utility">
+                    <button><img src="public/images/nav/link.png" alt=""></button>
+                </li>
+                <li class="nav-bar__link pomodoro">
+                    <button><img src="public/images/nav/tomato.png" alt=""></button>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="main-screen__basic part-screen">
+            <h1 class="main-screen__basic__greet"></h1>
+            <h1 class="main-screen__basic__introduction">press one of the left-side buttons <br> to start your day.</h1>
+        </div>
+
+        <div class="main-screen__todo part-screen hidden">
+            <div class="vertical-bar"></div>
+            <div class="main-screen__todo__todo">
+                <h1>TODOs</h1>
+            <ul id="todoList"></ul>
+            <form id="todoForm">
+                <input type="text" required placeholder="add new todo">
+            </form>
+            <button id="todoBtn">Copy!</button>
+            </div>
+            <div class="vertical-bar"></div>
+            <div class="main-screen__todo__done">
+                <h1>DONEs</h1>
+                <ul id="doneList"></ul>
+                <button id="doneBtn">Copy!</button>
+            </div>
+        </div>
+        
+        <div class="main-screen__calendar part-screen hidden">
+            <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23009688&ctz=Asia%2FSeoul&showCalendars=0&src=bGlrZXJ1ZGluQGdtYWlsLmNvbQ&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%2333B679&color=%230B8043" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+        </div>
+        
+        <div class="main-screen__utility part-screen hidden">
+            <h1>Browse the World!</h1>
+            <div class="main-screen__utility__search">
+            <form id="searchForm" method="get" action="https://www.google.com/search" target="_blank">
+                <select id="searchEngine">
+                    <option value="google">Google</option>
+                    <option value="bing">Bing</option>
+                </select>
+                <input type="text" name="q"/>
+                <input type="submit" value="search!"/>
+            </form>
+            </div>
+            <div class="horizontal-var"></div>
+            <div class="main-screen__utility__links">
+                <a href="https://nomadcoders.co/" target="_blank"><svg width="122" height="95" xmlns="http://www.w3.org/2000/svg"><path d="M86.642 0L122 94.469H0l3.914-11.741L35.494 0h14.44l10.391 28.88L72.201 0h14.44zM49.934 83.942h20.783L66.803 74.9l-6.478-17.139-10.391 26.181zM43.32 9.312l-28.88 74.63h24.966l1.215-1.214 14.44-39.407-3.914-10.527-7.827-23.482zm62.89 74.63l-2.7-9.042-7.827-19.838-7.828-22.268L78.68 9.312 65.59 43.32l15.654 40.621h24.967z" fill="#FF9500" fill-rule="evenodd"/></svg><p>Nomadcoders</p></a>
+                <a href="https://github.com/" target="_blank"><img src="public/images/links/github.png" alt=""><p>Github</p></a>
+                <a href="https://programmers.co.kr/" target="_blank"><img src="public/images/links/programmers.png" alt=""><p>Programmers</p></a>
+                <a href="https://www.tistory.com/" target="_blank"><img src="public/images/links/tstory.png" alt=""><p>Tstory</p></a>
+                <a href="https://chat.openai.com/" target="_blank"><img src="public/images/links/chatgpt.png" alt=""><p>Chat gpt</p></a>
+                <a href="https://www.notion.so/" target="_blank"><img src="public/images/links/notion.png" alt=""><p>Notion</p></a>
+            </div>
+        </div>
+
+        <div class="main-screen__pomodoro part-screen hidden">
+            <h1 class="main-screen__pomodoro__title">Pomodoro Timer</h1>
+            <div class="main-screen__pomodoro__images" >
+                <img src="public/images/pomodoro.png" alt="">
+                <h2 class="main-screen__pomodoro__state"></h2>
+                <h2 class="main-screen__pomodoro__timer"></h2>
+            </div>
+            <div class="main-screen__pomodoro__btns">
+                <button class="pomodoro__start">Start</button>
+                <button class="pomodoro__reset">reset</button>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="quotes">
+        <form class="quotes__form">
+            <div class="quotes__form__text">
+                <p class="quotes__form__text__quote"></p>
+                <p class="quotes__form__text__author"></p>
+            </div>
+            <div class="quotes__form__button">
+                <button><i class="fa-solid fa-repeat"></i> re-generate</button>
+            </div>
+        </form>    
+    </footer>
+
+    <container class="settings">
+            <button class="settings__button"><i class="fa-solid fa-gear"></i></button>
+            <div class="settings__settings hidden"> this is setting box</div>
+    </container>
+    
+    <script src="public/js/weather.js"></script>
+    <script src="public/js/quotes.js"></script>
+    <script src="public/js/background.js"></script>
+    <script src="public/js/clock.js"></script>
+   
+    
+    <script src="public/js/nav-btn.js"></script>
+    
+    <script src="public/js/todo.js"></script>
+    
+    <script src="public/js/utility.js"></script>
+    <script src="public/js/pomodoro.js"></script>
+    
+</body>
+</html>

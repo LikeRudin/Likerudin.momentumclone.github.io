@@ -1,0 +1,102 @@
+@import "components/header.css";
+@import "components/nav-bar.css";
+@import "components/footer.css";
+
+
+@import "screens/login.css";
+@import "screens/todo.css";
+@import "screens/calendar.css";
+@import "screens/pomodoro.css";
+@import "screens/utility.css";
+@import "screens/basic.css";
+
+
+@keyframes openingScroll {
+    0%{
+        transform: scaleY(0);
+    }
+    50%{
+        transform: scaleY(0.3);
+    }
+    100%{
+        transform: scaleY(1);
+    }
+}
+
+body {
+    box-sizing: border-box;
+    margin-top: 3%;
+    background-color: rgba(17,24,39, 0.7);
+    background-repeat: no-repeat;
+    background-size: calc(90%);
+    background-position-x: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    animation: openingScroll 0.5s linear;
+  
+}
+
+.hidden {
+    display: none !important;
+}
+
+
+
+.main-screen {
+    width:60%;
+    height:550px;
+    display:flex;
+    justify-content: space-between;
+    background-color: rgba(255,255,255,0.9);
+    animation: openingScroll 0.3 linear;
+  
+    
+    
+}
+
+.part-screen {
+    box-sizing: border-box;
+ 
+    width:80%;
+    height:100%;
+}
+
+
+
+.vertical-bar {
+    height:100%;
+    border: 3px solid rgba(0,0,0,0.6);
+}
+.horizontal-var {
+    width:100%;
+    border: 3px solid rgba(0,0,0,0.6);
+
+}
+
+
+
+.settings {
+    position:absolute;
+    width:50px;
+    height:50px;
+    left:100px;
+    bottom: 100px;
+}
+
+.settings__button {
+    background-color: rgba(0,0,0,0);
+    border: none;
+}
+
+.settings__button > i {
+    font-size: 50px;
+    color:white;
+    border-radius: black solid 2px;
+    transition: transform 2s ease-in-out;
+}
+
+.settings__button > i:hover{
+    transform: rotate(360deg);
+}

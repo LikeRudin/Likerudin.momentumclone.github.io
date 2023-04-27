@@ -1,0 +1,15 @@
+.main-screen__basic {
+    box-sizing: border-box;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    font-size: 25px;
+    text-align: center;
+}
+
+.main-screen__basic > h1 {
+    color:white;
+    -webkit-text-stroke: 4px rgba(0,0,0,0.7);
+
+}

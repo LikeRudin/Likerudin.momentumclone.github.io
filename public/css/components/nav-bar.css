@@ -1,0 +1,30 @@
+.nav-bar {
+    box-sizing: border-box;
+    margin-right: 30px;
+}
+
+.nav-bar__btns {
+    height: 100%;
+    width: 20%;
+    list-style-type: none;
+}
+
+.nav-bar__link {
+    height:25%;
+    width:100%;
+}
+
+.nav-bar__link >button{
+    width:110px;
+    height:110px;
+    border-radius: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-bar__link > button > img {
+    width:80px;
+    height:80px;
+
+}
+    
