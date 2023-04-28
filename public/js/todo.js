@@ -167,27 +167,34 @@ loadDone();
 
 todoForm.addEventListener("submit", handleTodoSubmit);
 
-
+/**
+ * 말머리(오늘날짜 + End!) 및 
+ * DONEs 를 복사합니다.
+ */
 doneCopyBtn.addEventListener("click", () =>{
     const doneSpanArray = doneList.querySelectorAll("li > span");
     const date = new Date()
-    const todayEnd = `${date.getFullYear()}/${date.getMonth() +1}/${date.getDate()} End!`;
+    const todayEnd = `${date.getFullYear()}/${date.getMonth() +1}/${date.getDate()} End!`; 
     const doneTextArray = [];
-    doneTextArray.push(todayEnd);
+    doneTextArray.push(todayEnd); 
     doneSpanArray.forEach((span) => {
-        doneTextArray.push(span.innerText);
+        doneTextArray.push(span.innerText); 
     });
 
-    const textToCopy = doneTextArray.join(`\n`);
+    const textToCopy = doneTextArray.join(`\n`); // 한줄씩 띄어써진 문자열로 변환
 
-    navigator.clipboard.writeText(textToCopy).then(() =>{
-        doneCopyBtn.innerText = `Copied!`;
+    navigator.clipboard.writeText(textToCopy).then(() =>{ 
+        doneCopyBtn.innerText = `Copied!`; // 복사후 copy 버튼 글씨번경 
+        setTimeout(()=>{
+            doneCopyBtn.innerText = `Copy`;
+        }, 1500)
     }).catch((err) => {
         doneCopyBtn.innerText = `failed.`;
         console.error(`failed to copy text ${err}`);
     });
 
 });
+
 
 todoCopyBtn.addEventListener("click", () =>{
     const todoSpanArray = todoList.querySelectorAll("li > span");
@@ -199,10 +206,13 @@ todoCopyBtn.addEventListener("click", () =>{
         todoTextArray.push(`[]` + span.innerText ); 
     });
 
-    const textToCopy = todoTextArray.join(`\n`);
+    const textToCopy = todoTextArray.join(`\n`); //todo 리스트를 한줄씩 입력한 스트링
 
     navigator.clipboard.writeText(textToCopy).then(() =>{
         todoCopyBtn.innerText = `Copied!`;
+        setTimeout(()=>{
+            todoCopyBtn.innerText = `Copy`;
+        }, 1500)
     }).catch((err) => {
         todoCopyBtn.innerText = `failed.`;
         console.error(`failed to copy text ${err}`);
