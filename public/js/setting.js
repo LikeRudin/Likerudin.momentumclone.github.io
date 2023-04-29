@@ -71,7 +71,7 @@ okBtn.addEventListener("click", ()=> {
 
 
 resetpageBtn.addEventListener("click", ()=> {
-    const choice = confirm(`Are you want to reset ?`);
+    const choice = confirm(`Do you want to reset this app?`);
     if (choice) {
         localStorage.clear();
         location.reload();
