@@ -255,7 +255,20 @@ location.reload();
 
 일단은 페이지 만들고 제출했다
 
-login-screen에서 main-screen으로 이동할때,
-애니메이션 및 각 버튼 hover 애니메이션을 추가
+css
 
+```login-screen에서 main-screen으로 이동할때,
+애니메이션 및 각 버튼 hover 애니메이션을 추가
+```
+
+functionality
+
+```
+pomodo reps 추가
+```
+
+기타
+
+```
 readme 좀 보기좋게 다시쓰자.
+```
