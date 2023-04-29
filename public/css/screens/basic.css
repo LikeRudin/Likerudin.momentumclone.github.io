@@ -9,7 +9,7 @@
 }
 
 .main-screen__basic > h1 {
-    color:white;
-    -webkit-text-stroke: 4px rgba(0,0,0,0.7);
+    color:black;
+    -webkit-text-stroke: 2px rgba(255,255,255,0.7);
 
 }
