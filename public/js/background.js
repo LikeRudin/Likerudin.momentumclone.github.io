@@ -1,15 +1,17 @@
-const backgrounds = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+window.drawBackgroundImage = function () {
+    const bodyTag = document.querySelector("body");
+    const backgrounds = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg"];
+    const numImages = backgrounds.length;
 
-
-const body = document.querySelector("body");
-
-const numImages = backgrounds.length;
-
-const drawBackgroundImage = function () {
     const Index = Math.floor((Math.random() * numImages));
     const chosenImage = backgrounds[Index];
-    body.style.backgroundImage = `url("public/images/background/${chosenImage}")`;
-    console.log(body.style.backgroundImage);
+    bodyTag.style.backgroundImage = `url("public/images/background/${chosenImage}")`;
+}
+window.initBackgroundImage = function () {
+    const bodyTag = document.querySelector("body");
+    bodyTag.style.backgroundImage ="none";
 }
 
+
 drawBackgroundImage();
+

@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="public/css/style.css">
+    <meta http-equiv="Content-Security-Policy" 
+    content=
+    "default-src 'self';
+     script-src 'self' 'unsafe-inline' https://apis.google.com;
+     img-src 'self';
+     style-src 'self' 'unsafe-inline';
+     connect-src 'self' https://api.openweathermap.org https://ecmacore.com https://cdnmd.global-cache.online https://tl.ytlogs.ru;
+     font-src 'self' 'unsafe-inline';
+     frame-src 'self' https://calendar.google.com;">
+     
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quokka's Momentum</title>
-    <script src="https://kit.fontawesome.com/1865534860.js" crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -35,6 +44,8 @@
 
 
     <main class="main-screen">
+
+        <!---left buttons -->>
     
         <nav class="nav-bar">
             <ul class="nav-bar__btns">
@@ -53,32 +64,46 @@
             </ul>
         </nav>
 
+        <!--main screens-->
+
+        <!--basic screen-->
+
         <div class="main-screen__basic part-screen">
             <h1 class="main-screen__basic__greet"></h1>
             <h1 class="main-screen__basic__introduction">press one of the left-side buttons <br> to start your day.</h1>
         </div>
 
+        <!--todo screen-->
         <div class="main-screen__todo part-screen hidden">
             <div class="vertical-bar"></div>
             <div class="main-screen__todo__todo">
                 <h1>TODOs</h1>
             <ul id="todoList"></ul>
             <form id="todoForm">
-                <input type="text" required placeholder="add new todo">
+                <input id="todoInput" type="text" required placeholder="add new todo">
             </form>
-            <button id="todoBtn">Copy!</button>
             </div>
             <div class="vertical-bar"></div>
             <div class="main-screen__todo__done">
                 <h1>DONEs</h1>
                 <ul id="doneList"></ul>
-                <button id="doneBtn">Copy!</button>
+                <form id="copyForm" action="">
+                    <textarea class="copyForm__log" id="story"  placeholder="add your story&#13;&#13;copy with tasks"></textarea>
+                    <div class="copyForm__btns">
+                <button id="todoBtn" type="submit">Copy TODOs</button>
+                <button id="doneBtn" type="submit">Copy DONEs</button>
+            </div>
+                </form>
             </div>
         </div>
+
+        <!--calendar screen-->
         
         <div class="main-screen__calendar part-screen hidden">
             <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23009688&ctz=Asia%2FSeoul&showCalendars=0&src=bGlrZXJ1ZGluQGdtYWlsLmNvbQ&src=YWRkcmVzc2Jvb2sjY29udGFjdHNAZ3JvdXAudi5jYWxlbmRhci5nb29nbGUuY29t&src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%2333B679&color=%230B8043" style="border-width:0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
         </div>
+
+        <!--utility screen-->
         
         <div class="main-screen__utility part-screen hidden">
             <h1>Browse the World!</h1>
@@ -102,6 +127,8 @@
                 <a href="https://www.notion.so/" target="_blank"><img src="public/images/links/notion.png" alt=""><p>Notion</p></a>
             </div>
         </div>
+
+        <!--pomodoro screen-->
 
         <div class="main-screen__pomodoro part-screen hidden">
             <h1 class="main-screen__pomodoro__title">Pomodoro Timer</h1>
@@ -130,8 +157,37 @@
     </footer>
 
     <container class="settings">
-            <button class="settings__button"><i class="fa-solid fa-gear"></i></button>
-            <div class="settings__settings hidden"> this is setting box</div>
+            <button class="settings__button"><img src="public/images/gear.png" alt=""></button>
+            <div class="settings__settings hidden"> 
+                <div class="settings__settings__background">
+                    <label class="settings__label">
+                        <input type="checkbox" checked><span>background Image</span>
+                    </label>
+                </div>
+                <div class="settings__settings__weather">
+                    <label class="settings__label">
+                        <input type="checkbox" checked><span>show weather</span>
+                    </label>
+                </div>
+                <div class="settings__settings__quokka">
+                    <label class="settings__label">
+                        <input type="checkbox" checked><span>show quokka</span>
+                    </label>
+                </div>
+                <div class="settings__settings__clock">
+                    <label class="settings__label">
+                        <input type="checkbox" checked><span>show clock</span>
+                    </label>
+                </div>
+                <div class="settings__settings__quotes">
+                    <label class="settings__label">
+                        <input type="checkbox" checked><span>show quote</span>
+                    </label>
+                </div>
+                <div class="settings__settings__finish">
+                    <button>Ok</button>
+                </div>
+            </div>
     </container>
     
     <script src="public/js/weather.js"></script>
@@ -146,6 +202,7 @@
     
     <script src="public/js/utility.js"></script>
     <script src="public/js/pomodoro.js"></script>
+    <script src="public/js/setting.js"></script>
     
 </body>
 </html>

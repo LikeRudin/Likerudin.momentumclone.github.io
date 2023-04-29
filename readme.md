@@ -1,12 +1,19 @@
 모든 쿼카사진은 bing-ai로 생성했습니다.
 
+####################------------230425----------------############
+
 ## background.js
 
-url(".public/images/background/0.jpg")
+오류:
+
+```
 index.html:51 GET file:///C:/Users/MY/Desktop/clone/momentumclone/Likerudin.momentumclone.github.io/.public/images/background/0.jpg
 net::ERR_FILE_NOT_FOUND
+```
+
 url("public/images/background/${chosenImage}")
 맨앞에 점 넣으면 인식못함.
+.public이 아니라 그냥 public
 
 ## quotes.js
 
@@ -22,7 +29,15 @@ display: none;
 
 classList.add("hidden");이 작동하지 않는다.
 
-아마도 미리 설정된 display:flex; 값에 혼동을 주는것 같았다.
+미리 설정된 display:flex; 값에 혼동을 주는것 같았다.
+
+hidden 클래스에 !important를 추가해주어 문제를 해결하였다.
+
+```
+.hidden {
+    display: none !important;
+}
+```
 
 ## nav-btn.js 파일 분리
 
@@ -131,6 +146,8 @@ searchForm.action = `https://www.${selectedEngine}.com/search`;
 <a href="https://www.flaticon.com/free-icons/pomodoro" title="pomodoro icons">Pomodoro icons created by Flat Icons - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/letter-t" title="letter t icons">Letter t icons created by Md Tanvirul Haque - Flaticon</a>
 
+####################------------230427----------------############
+
 ## nav-btn
 
 basic-screen 을 만들었다.
@@ -167,3 +184,57 @@ display: none;
 
 위 두 코드로 스크롤되는 박스를 만든 후,
 가시적인 스크롤바를 삭제해주었다.
+
+####################------------230429----------------############
+
+## weather 개선사항
+
+새로고침시마다 권한요청 알림이 계속뜨는게 짜증나서
+아예 localStorage에 위치정보를 저장하도록 설정했다.
+
+name, todo, done 처럼 이미 저장된 값이 있다면
+그 값을 토대로 openweather api에 접근하므로
+
+localStorage.clear() 를 호출하지 않는이상
+새로고침해도 권한요청이 다시오지않는다.
+
+## font-awesome 제거
+
+weather 개선사항에서 반복적으로 말하고있던
+"권한 접근허용 요청" 이 구글 브라우저 관련 auth 이슈라는것을 알게되고,
+https://github.com/supabase/gotrue-js/issues/353
+
+html에 다음과 같은 메타태그를 추가해주었다.
+
+```
+<meta http-equiv="Content-Security-Policy"
+    content=
+    "default-src 'self';
+     script-src 'self' 'unsafe-inline' https://apis.google.com;
+     img-src 'self';
+     style-src 'self' 'unsafe-inline';
+     connect-src 'self' https://api.openweathermap.org https://ecmacore.com https://cdnmd.global-cache.online https://tl.ytlogs.ru;
+     font-src 'self' 'unsafe-inline';
+     frame-src 'self' https://calendar.google.com;">
+```
+
+그런데 font-awesome을 추가하는것이
+openweather과 같은 다른 api들의 안전 규약을위협하여
+같이 설정할수 없다는 메시지가 나와 제거해주었다.
+
+브라우저의 오류메시지:
+
+```
+fused to connect to 'https://ka-f.fontawesome.com/releases/v6.4.0/css/free.min.css?token=1865534860' because it violates the following Content Security Policy directive: "connect-src 'self' https://api.openweathermap.org https://ecmacore.com https://cdnmd.global-cache.online https://tl.ytlogs.ru".
+```
+
+## todo.js
+
+todo 스토리를 추가하였다.
+copyForm 안에 input 과 버튼 두개를 몰아넣는 식으로 코딩하였으나,
+input 내부의 줄바꿈 문제가 발생하여
+story input 을 textarea로 바꿔주었다.
+
+js 코드도 전부 textarea로 번경해주었다.
+
+placeholder 에 뛰어쓰기 하는법&#13;&#10;

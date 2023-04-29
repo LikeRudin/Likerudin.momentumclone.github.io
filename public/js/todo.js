@@ -167,11 +167,27 @@ loadDone();
 
 todoForm.addEventListener("submit", handleTodoSubmit);
 
+
+// copy part
+
+const copyForm = document.getElementById("copyForm");
+
+const handleCopyFormSubmit = function (event) {
+    event.preventDefault();
+
+    const textArea = copyForm.querySelector("textarea");
+    const story = textArea.value;
+    return story
+
+}
+
+
 /**
  * 말머리(오늘날짜 + End!) 및 
  * DONEs 를 복사합니다.
  */
-doneCopyBtn.addEventListener("click", () =>{
+doneCopyBtn.addEventListener("click", (event) =>{
+    const story = handleCopyFormSubmit(event)
     const doneSpanArray = doneList.querySelectorAll("li > span");
     const date = new Date()
     const todayEnd = `${date.getFullYear()}/${date.getMonth() +1}/${date.getDate()} End!`; 
@@ -180,13 +196,14 @@ doneCopyBtn.addEventListener("click", () =>{
     doneSpanArray.forEach((span) => {
         doneTextArray.push(span.innerText); 
     });
+    doneTextArray.push(story);
 
     const textToCopy = doneTextArray.join(`\n`); // 한줄씩 띄어써진 문자열로 변환
 
     navigator.clipboard.writeText(textToCopy).then(() =>{ 
         doneCopyBtn.innerText = `Copied!`; // 복사후 copy 버튼 글씨번경 
         setTimeout(()=>{
-            doneCopyBtn.innerText = `Copy`;
+            doneCopyBtn.innerText = `Copy DONEs!`;
         }, 1500)
     }).catch((err) => {
         doneCopyBtn.innerText = `failed.`;
@@ -196,7 +213,8 @@ doneCopyBtn.addEventListener("click", () =>{
 });
 
 
-todoCopyBtn.addEventListener("click", () =>{
+todoCopyBtn.addEventListener("click", (event) =>{
+    const story = handleCopyFormSubmit(event);
     const todoSpanArray = todoList.querySelectorAll("li > span");
     const date = new Date()
     const todayStart = `${date.getFullYear()}/${date.getMonth() +1}/${date.getDate()} start!`; 
@@ -205,13 +223,14 @@ todoCopyBtn.addEventListener("click", () =>{
     todoSpanArray.forEach((span) => {
         todoTextArray.push(`[]` + span.innerText ); 
     });
+    todoTextArray.push(story);
 
     const textToCopy = todoTextArray.join(`\n`); //todo 리스트를 한줄씩 입력한 스트링
 
     navigator.clipboard.writeText(textToCopy).then(() =>{
         todoCopyBtn.innerText = `Copied!`;
         setTimeout(()=>{
-            todoCopyBtn.innerText = `Copy`;
+            todoCopyBtn.innerText = `Copy TODOs!`;
         }, 1500)
     }).catch((err) => {
         todoCopyBtn.innerText = `failed.`;
