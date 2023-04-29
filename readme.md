@@ -257,3 +257,5 @@ location.reload();
 
 login-screen에서 main-screen으로 이동할때,
 애니메이션 및 각 버튼 hover 애니메이션을 추가
+
+readme 좀 보기좋게 다시쓰자.
