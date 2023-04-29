@@ -1,6 +1,6 @@
 모든 쿼카사진은 bing-ai로 생성했습니다.
 
-####################------------230425----------------############
+## ##################------------230425----------------############
 
 ## background.js
 
@@ -146,7 +146,7 @@ searchForm.action = `https://www.${selectedEngine}.com/search`;
 <a href="https://www.flaticon.com/free-icons/pomodoro" title="pomodoro icons">Pomodoro icons created by Flat Icons - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/letter-t" title="letter t icons">Letter t icons created by Md Tanvirul Haque - Flaticon</a>
 
-####################------------230427----------------############
+## ##################------------230427----------------############
 
 ## nav-btn
 
@@ -185,7 +185,7 @@ display: none;
 위 두 코드로 스크롤되는 박스를 만든 후,
 가시적인 스크롤바를 삭제해주었다.
 
-####################------------230429----------------############
+## ##################------------230429----------------############
 
 ## weather 개선사항
 
@@ -237,4 +237,23 @@ story input 을 textarea로 바꿔주었다.
 
 js 코드도 전부 textarea로 번경해주었다.
 
-placeholder 에 뛰어쓰기 하는법&#13;&#10;
+placeholder 에 뛰어쓰기 하는법 `&#13;&#10;`
+
+## setting.js 추가
+
+화면에 배경화면, 쿼카 인사, 날씨, 시계 표시를 치울 수 있는 설정을 추가했다.
+background.js의 함수들을 window 전역객체에 넣어주고,
+setting.js에서 호출하는 방식을 사용했다.
+
+## setting.js -reset button 추가
+
+누르면 localStorage가 초기화되고. 페이지가 새로고침된다.
+localStorage.clear();
+location.reload();
+
+## 앞으로 더 해야할일
+
+일단은 페이지 만들고 제출했다
+
+login-screen에서 main-screen으로 이동할때,
+애니메이션 및 각 버튼 hover 애니메이션을 추가

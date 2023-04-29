@@ -10,6 +10,7 @@ const quotesSetBtn = settingsBox.querySelector(".settings__settings__quotes inpu
 
 
 const okBtn = settingsBox.querySelector(".settings__settings__finish button");
+const resetpageBtn = settingsBox.querySelector(".settings__settings__reset button");
 
 const weatherDiv = document.querySelector(".weather");
 const quokkaDiv = document.querySelector(".quokka");
@@ -66,4 +67,14 @@ quotesSetBtn.addEventListener("click", ()=> {
 
 okBtn.addEventListener("click", ()=> {
     settingsBox.classList.add("hidden");
+});
+
+
+resetpageBtn.addEventListener("click", ()=> {
+    const choice = confirm(`Are you want to reset ?`);
+    if (choice) {
+        localStorage.clear();
+        location.reload();
+
+    } 
 });
