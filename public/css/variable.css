@@ -1,0 +1,6 @@
+:root {
+    --mild-green: rgba(79,219,140, 0.7);
+    --mild-tomato: rgba(255,99,71, 0.7);
+
+    --hover-box-shadow: 0 0 0 max(3px, 0.2em) lightgray;
+}

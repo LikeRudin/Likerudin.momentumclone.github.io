@@ -1,13 +1,35 @@
 
 .main-screen__pomodoro {
     width:100%;
+    height:100%;
     display:flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position:relative;
+    background-color: rgb(235, 230, 255);
+
+}
+.main-screen__pomodoro > h1 {
+    position:absolute;
+    top: 5px;
+    right: 39%;
+    margin: 10px;
+    text-align: center;
+}
+.main-screen__pomodoro__images {
+    margin-top: 40px;
+    width:50%;
+    height:100%;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
-.main-screen__pomodoro__images{
+.pomodoro__images {
+    margin-top: 5%;
+    width:100%;
+    height:45%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -15,15 +37,110 @@
 }
 
 
-.main-screen__pomodoro__images > img {
+.main-screen__pomodoro__images > div > img {
     z-index: 30;
-    width: 350px;
-    height: 350px;
+    width: 300px;
+    height: 300px;
 }
 
-.main-screen__pomodoro__btns {
+
+.main-screen__pomodoro__timer, .main-screen__pomodoro__state {
+    font-size: 30px;
+    position: absolute;
+    z-index:55;
+    border-radius: 25%;
+}
+
+.focus {
+    background-color: var(--mild-tomato);
+}
+
+.break {
+    background-color: var(--mild-green);
+}
+
+.main-screen__pomodoro__state {
+    top: 120px;
+}
+.main-screen__pomodoro__timer {
+    top: 170px;
+}
+
+
+.main-screen__pomodoro__reps{
+    margin-top: 30px;
+    height:40%;
     width:100%;
+    align-self: flex-start;
+    font-size: 25px;
+    display:flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.reps__symbol{
+    margin-left: 10px;
+    height:100%;
+    width:20%;
+    text-align: center;
+    font-size: 30px;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.reps__symbol > h3,
+.reps__symbol > h4 {
+margin:5px 0px;
+font-size: 30px;
+}
+
+.reps__marker {
+    margin-top: 10px;
+    height:100%;
+    width: 80%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.reps__ul {
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    max-width: 80%;
+    overflow-x: auto;
+}
+
+.reps__ul::-webkit-scrollbar {
+    display: none;
+}
+
+.reps__ul > li{
+    width:40px;
+    height:40px;
+    font-size: 30px;
+    border-radius: 15%;
+    margin: 2px 5px;
+    text-align: center;
+}
+
+.ul__focus > li {
+    background-color: rgba(255,99,71, 0.7);
+}
+
+.ul__break > li {
+    background-color: rgba(79,219,140, 0.7);
+}
+
+
+
+.main-screen__pomodoro__btns {
+    width:50%;
+    height:100%;
+    display: flex;
+    flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
 }
@@ -36,24 +153,76 @@
 
 
 
-.main-screen__pomodoro__timer, .main-screen__pomodoro__state {
+.main-screen__pomodoro__btns {
+    width: 50%;
+    height: 100%;
+    background-color: rgb(235, 230, 255);
+    
+}
+.pomodoro__control__btns{
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.pomodoro__control__btns > button {
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    margin:30px;
     font-size: 30px;
-    position: absolute;
-    z-index:55;
-    border-radius: 25%;
+    font-weight: bold;
 }
 
-.focus {
-    background-color: tomato;
-}
-.rest {
-    background-color: rgb(164, 205, 83);
+.pomodoro__control__btns > button:hover {
+    box-shadow: 0 0 0 max(3px, 0.2em) lightgray;  
 }
 
-.main-screen__pomodoro__state {
-    top: 150px;
-}
-.main-screen__pomodoro__timer {
-    top: 200px;
+.time__btns{
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+    text-align: center;
 }
 
+.focus__btn, .break__btn  {
+    display:flex;
+    align-items: center;
+    margin: 10px;
+}
+
+.focus__btn__component {
+    background-color: rgba(255,99,71, 0.7);
+}
+
+.break__btn__component {
+    background-color: rgba(79,219,140, 0.7);
+}
+.gap--zero {
+    height:65px;
+    width:55px;
+    font-size:40px;
+    margin:0;
+    border:none;
+    box-shadow:none;
+    text-align:center;
+    
+}
+
+.gap--zero:hover{
+    box-shadow: 0 0 0 max(3px, 0.2em) lightgray;  
+}
+
+
+.left-border-radius{
+    border-top-left-radius:15px;
+    border-bottom-left-radius:15px;
+}
+.right-border-radius {
+    border-top-right-radius:15px;
+    border-bottom-right-radius:15px;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+    display:none;
+}

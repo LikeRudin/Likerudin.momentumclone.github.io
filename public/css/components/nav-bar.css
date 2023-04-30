@@ -21,7 +21,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: background-color 0.2s linear;
 }
+
+.nav-bar__link >button:hover {
+    background-color: wheat;
+    cursor: pointer;
+}
+
 .nav-bar__link > button > img {
     width:80px;
     height:80px;

@@ -1,3 +1,5 @@
+@import "variable.css";
+
 @import "components/header.css";
 @import "components/nav-bar.css";
 @import "components/footer.css";
@@ -29,7 +31,7 @@ body {
     margin-top: 3%;
     background-color: rgba(17,24,39, 0.7);
     background-repeat: no-repeat;
-    background-size: calc(90%);
+    background-size: calc(100%);
     background-position-x: center;
     display: flex;
     flex-direction: column;
@@ -77,4 +79,7 @@ body {
 
 }
 
+button:hover {
+    cursor: pointer;
+}
 

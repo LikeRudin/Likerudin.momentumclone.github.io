@@ -25,17 +25,22 @@
     height: 80px;
     color:white;
     border-radius: black solid 2px;
-    transition: transform 2s ease-in-out;
+    transition: transform 2s ease-in-out, background-color 0.2s linear;
+    border-radius: 40%;
+  
 }
 
 .settings__button > img:hover{
     transform: rotate(360deg);
+    box-shadow: 0 0 0 max(5px, 0.2em) black;
+    background-color: white;
+    cursor: pointer;
 }
 
 
 .settings__settings {
     width:100%;
-    height: 60%;
+    height: 60%;  
     display: flex;
     flex-direction: column;
     align-items: center;

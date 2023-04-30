@@ -85,7 +85,7 @@ const pomodoroGreetArray = [
     `Eat another one!`,
     `Want some more?`,
     `You made it!`,
-    `Nico love tomato color.`,
+    `Nico loves tomato`,
     `Be the food fighter!!`,
     `All you need is tomato`,
 ];

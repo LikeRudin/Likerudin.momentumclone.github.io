@@ -45,7 +45,7 @@
 
     <main class="main-screen">
 
-        <!---left buttons -->>
+        <!---left buttons -->
     
         <nav class="nav-bar">
             <ul class="nav-bar__btns">
@@ -132,15 +132,60 @@
 
         <div class="main-screen__pomodoro part-screen hidden">
             <h1 class="main-screen__pomodoro__title">Pomodoro Timer</h1>
+            
+            <!--left side: tomato-->
+
             <div class="main-screen__pomodoro__images" >
-                <img src="public/images/pomodoro.png" alt="">
-                <h2 class="main-screen__pomodoro__state"></h2>
-                <h2 class="main-screen__pomodoro__timer"></h2>
+                <div class="pomodoro__images">
+                    <img src="public/images/pomodoro.png" alt="">
+                    <h2 class="main-screen__pomodoro__state"></h2>
+                    <h2 class="main-screen__pomodoro__timer"></h2>
+                </div>
+                <div class="main-screen__pomodoro__reps">
+                    <div class="reps__symbol">
+                        <h3>🍅</h3>
+                        <h4>reps</h4>
+                        <h3>🔋</h3>
+                    </div>
+                    <div class="reps__marker">
+                        <ul class="reps__ul ul__focus">
+                            <li>F</li>
+                        </ul>
+                        <ul class="reps__ul ul__break">
+                            <li>B</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
+            <!--right side: control pannel-->
+            
             <div class="main-screen__pomodoro__btns">
-                <button class="pomodoro__start">Start</button>
-                <button class="pomodoro__reset">reset</button>
-            </div>
+                <div class="pomodoro__control__btns">   
+                    <button class="pomodoro__start">Start</button>
+                    <button class="pomodoro__reset">reset</button>
+                </div>
+                <div class="time__btns">
+                    <div>
+                        <div class="focus__btn">
+                            <button class="gap--zero focus__btn__component left-border-radius" id="focus__decrement">-</button>
+                            <input class="gap--zero focus__btn__component" id="focus__input" type="number" value="25" min="15" max="50">
+                            <button class="gap--zero focus__btn__component right-border-radius" id="focus__increment">+</button>
+                        </div>
+                        <h3>Focus Time</h3>
+                    </div>
+                    <div>
+                        <div class="break__btn">
+                            <button class="gap--zero break__btn__component left-border-radius" id="break__decrement">-</button>
+                            <input class="gap--zero break__btn__component" id="break__input" type="number" value="5" min="1" max="25">
+                            <button class="gap--zero break__btn__component right-border-radius" id="break__increment">+</button>
+                        </div>
+                        <h3>Break Time</h3>
+                        
+                    </div>
+                </div>
+                
+                </div>
         </div>
     </main>
     
