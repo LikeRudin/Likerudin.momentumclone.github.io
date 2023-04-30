@@ -83,3 +83,18 @@ button:hover {
     cursor: pointer;
 }
 
+
+.review {
+    z-index: 70;
+    appearance: none;
+    text-decoration: none;
+    font-size: 20px;
+    position: fixed;
+    top: 100px;
+    right: 100px;
+    transition: font-size 0.2s ease-in-out, rotateX(360deg) 2s infinite;
+}
+
+.review:hover {
+    font-size: 200px;
+}

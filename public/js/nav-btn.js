@@ -110,11 +110,13 @@ const changeScreen = function (name){
 const handleLogin = function(event) {
     event.preventDefault();
     const input = loginForm.querySelector("input");
-    const name = input.value;
+    const nameValue = input.value;
     input.value = "";
 
-    localStorage.setItem("userName", name);
-    changeScreen(name);
+    name = nameValue;
+
+    localStorage.setItem("userName", nameValue);
+    changeScreen(nameValue);
 
 }
 

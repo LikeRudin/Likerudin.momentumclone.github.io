@@ -223,7 +223,7 @@ todoCopyBtn.addEventListener("click", (event) =>{
     todoSpanArray.forEach((span) => {
         todoTextArray.push(`[]` + span.innerText ); 
     });
-    todoTextArray.push(story);
+    todoTextArray.push(story); // 오늘의 각오, 소감 코멘트 
 
     const textToCopy = todoTextArray.join(`\n`); //todo 리스트를 한줄씩 입력한 스트링
 

@@ -20,7 +20,7 @@ const quotesDiv = document.querySelector(".quotes");
 
 
 settingBtn.addEventListener("click", ()=> {
-    settingsBox.classList.remove("hidden");
+    settingsBox.classList.toggle("hidden");
 });
 
 backgroundSetBtn.addEventListener("click", () =>{
