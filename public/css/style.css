@@ -55,6 +55,8 @@ body {
     justify-content: space-between;
     background-color: rgba(255,255,255,0.9);
     animation: openingScroll 0.3 linear;
+
+    box-sizing: border-box;
   
     
     
@@ -98,4 +100,9 @@ button:hover {
 .review:hover {
     font-size: 200px;
     transform: rotate(360deg);
+}
+
+
+.scroll {
+    animation: openingScroll 2s ease-in-out;
 }
