@@ -87,6 +87,7 @@ const regenerateBtn = quoteForm.querySelector("button");
 
 const numQuotes = quotes.length;
 
+/**show random quote on screen */
 const setQuote = function () {
     const index = Math.floor(Math.random() * numQuotes);
     const chosen = quotes[index];

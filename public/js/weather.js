@@ -6,9 +6,9 @@ const city = document.querySelector(`.weather__city`);
 const API_KEY = "7a38e6a93c3e57a925e618636e9ba5fb";
 
 /**
- * 날씨와 시간을 화면에 표시합니다.
- * @param {*} lan 
- * @param {*} lon 
+ * show weather and city
+ * @param {*} lan: langitude 
+ * @param {*} lon: longtitude
  */
 const getWeather = function (lan, lon) {
     const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lan}&lon=${lon}&appid=${API_KEY}&units=metric`;
@@ -25,7 +25,7 @@ const getWeather = function (lan, lon) {
 }
 
 /**
- * 위치를 가져옵니다.
+ * get current position.
  * @param {} position 
  */
 const onGeoOk = function (position) {
@@ -40,10 +40,7 @@ const onGeoOk = function (position) {
    
 }
 
-/**
- * 위치정보에 접근 할 수없을떄
- * 실행됩니다.
-*/
+/**show Error message*/
 const onGeoError = function() {
     alert(`Can't find you. No weather for you`);
     city.innerText = "Nowhere";
@@ -51,14 +48,10 @@ const onGeoError = function() {
 }
 
 /**
- * 위치정보를 가져옵니다.
- * 
- * localStorage에 위치정보가
- * 있다면  그대로 사용합니다
- * 없다면 navgator로 입력받습니다.
+ * get user's location information from localStorage if exists,
+ * if doesn't, get that from navigator Object
  * @returns 
  */
-
 const loadWeather = function() {
     const coords = localStorage.getItem("coords");
     if (coords !== null) {
@@ -70,6 +63,7 @@ const loadWeather = function() {
     }
 }
 
+/*initialize */
 const init = function () {
     loadWeather();
 }

@@ -2,7 +2,7 @@ const clockTag = document.querySelector(".clock__time");
 const date = new Date();
 
 
-
+/**show time on screen*/
 const setTime = function() {
     const date = new Date();
     const hours = date.getHours().toString().padStart(2,"0");

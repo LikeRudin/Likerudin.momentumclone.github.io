@@ -8,7 +8,8 @@ const focusUl = document.querySelector(".ul__focus");
 const breakUl = document.querySelector(".ul__break");
 
 /**
- * reps 기록을 그려줍니다
+ * paint reps on screen
+ * add li to ul
  * @param {*} UL focusUL 또는 breakUL
  * @param {*} MINUTE POMODOROTIME reps
  */
@@ -18,11 +19,7 @@ const paintReps = function(UL, MINUTE){
     UL.appendChild(li);
 }
 
-/**
- * reps 기록을 localStorage에 저장합니다.
- */
-
-
+/**save reps number to localStorage */
 const saveRepsNum = function() {
     localStorage.setItem("repsNum", reps.toString());
 }
@@ -46,7 +43,7 @@ const saveBreakReps = function () {
 }
 
 /**
- * reps기록을 꺼내옵니다
+ * load reps logs from localStorage
  */
 const loadRepsLog = function() {
     
@@ -74,7 +71,7 @@ const loadRepsLog = function() {
         });
     }
 }
-
+/* load reps from localStorage */
 const loadRepsNum = function () {
     const loadedReps = localStorage.getItem("repsNum");
     if (loadedReps !== null) {
@@ -92,13 +89,11 @@ let reps = 0;
 
 const timer = document.querySelector(".main-screen__pomodoro__timer");
 
-/**start 버튼 무력화 */
+//start 버튼 무력화
 let countInterval = null;
 
 
-/**
- * 타이머를 그려줍니다.
- */
+/**draw timer.*/
 const countWork = function () {
     const minute = parseInt(pomodoroTime / 60);
     const second = pomodoroTime - minute * 60;
@@ -108,17 +103,17 @@ const countWork = function () {
     pomodoroTimer.innerText= `${minuteText} : ${secondText}`;
     pomodoroTime -= 1;
 
-    if (pomodoroTime < 0) {
+    if (pomodoroTime < 0) { // 타이머 종료
         clearInterval(countInterval);
         countInterval = null;
         saveFocusReps();
         saveBreakReps();
-        if (reps % 2 == 0){
+        if (reps % 2 == 0){ // 휴식종료
 
             pomodoroState.innerText = "Focus";
             pomodoroState.classList.remove("break");
             
-        } else {
+        } else { //집중 종료
 
             pomodoroState.innerText = "Break";
             pomodoroState.classList.remove("focus");
@@ -129,9 +124,8 @@ const countWork = function () {
     }
 }
 
-/**
- * 타이머를 시작합니다.
- */
+
+/** start pomodoro Timer */
 const startPomodoro = function() {
     if (countInterval === null){
         if (reps % 2 == 0 ){
@@ -162,10 +156,8 @@ const startPomodoro = function() {
     }
     }
 
-/**
- * pomodoro 기록을 초기화합니다.
- */
 
+/** reset pomodoro logs and reps */
 const alertReset = function () {
     const choice = confirm(`Do you want to reset pomodoro logs? `)
     if (choice) {
@@ -192,7 +184,7 @@ const alertReset = function () {
 startBtn.addEventListener("click", startPomodoro);
 resetBtn.addEventListener("click", alertReset);
 
-/** detail control pannel */
+// detail control pannel
 
 const focusSetBtns = document.querySelectorAll(".focus__btn > *");
 const focusIncrementBtn = focusSetBtns[2];

@@ -89,7 +89,8 @@ const deleteDone = function(event) {
 
 
 /**
- * 화면에 TODO를 추가합니다.
+ * draw Todo list on Screen
+ * add li to ul
  * @param {*} newTodo : input 입력받은값 
  * @param {*} todoKey : Date().getTime()으로 생성한 키
  */
@@ -117,11 +118,7 @@ const paintTodo = function(newTodo, todoKey) {
 
 
 
-/**
- * local Storage에 저장된 
- * todo를 불러옵니다.
- */
-
+/**load TODO from localStorage */
 const loadTodo = function() {
     todoStorage = {};
     const todoData = localStorage.getItem(TODOS_KEY);
@@ -137,6 +134,7 @@ const loadTodo = function() {
 
 }
 
+/**load Dones from localStorage */
 const loadDone = function() {
     doneStorage = {};
     const doneData = localStorage.getItem(DONES_KEY);
@@ -151,6 +149,9 @@ const loadDone = function() {
     }
 }
 
+/**operates for todo input
+ * call functionsfor saving and drawing
+ */
 const handleTodoSubmit = function (event){
     event.preventDefault();
     const newTodo = todoInput.value;
@@ -172,6 +173,7 @@ todoForm.addEventListener("submit", handleTodoSubmit);
 
 const copyForm = document.getElementById("copyForm");
 
+/*give storyText to copies*/
 const handleCopyFormSubmit = function (event) {
     event.preventDefault();
 
@@ -182,10 +184,7 @@ const handleCopyFormSubmit = function (event) {
 }
 
 
-/**
- * 말머리(오늘날짜 + End!) 및 
- * DONEs 를 복사합니다.
- */
+/** copy Dones with story*/
 doneCopyBtn.addEventListener("click", (event) =>{
     const story = handleCopyFormSubmit(event)
     const doneSpanArray = doneList.querySelectorAll("li > span");
@@ -198,10 +197,10 @@ doneCopyBtn.addEventListener("click", (event) =>{
     });
     doneTextArray.push(story);
 
-    const textToCopy = doneTextArray.join(`\n`); // 한줄씩 띄어써진 문자열로 변환
+    const textToCopy = doneTextArray.join(`\n`); 
 
     navigator.clipboard.writeText(textToCopy).then(() =>{ 
-        doneCopyBtn.innerText = `Copied!`; // 복사후 copy 버튼 글씨번경 
+        doneCopyBtn.innerText = `Copied!`; 
         setTimeout(()=>{
             doneCopyBtn.innerText = `Copy DONEs!`;
         }, 1500)
@@ -212,20 +211,20 @@ doneCopyBtn.addEventListener("click", (event) =>{
 
 });
 
-
+/**copy Todos with story */
 todoCopyBtn.addEventListener("click", (event) =>{
     const story = handleCopyFormSubmit(event);
     const todoSpanArray = todoList.querySelectorAll("li > span");
     const date = new Date()
     const todayStart = `${date.getFullYear()}/${date.getMonth() +1}/${date.getDate()} start!`; 
     const todoTextArray = [];
-    todoTextArray.push(todayStart); //오늘 날짜 + start
+    todoTextArray.push(todayStart); 
     todoSpanArray.forEach((span) => {
         todoTextArray.push(`[]` + span.innerText ); 
     });
-    todoTextArray.push(story); // 오늘의 각오, 소감 코멘트 
+    todoTextArray.push(story); 
 
-    const textToCopy = todoTextArray.join(`\n`); //todo 리스트를 한줄씩 입력한 스트링
+    const textToCopy = todoTextArray.join(`\n`); 
 
     navigator.clipboard.writeText(textToCopy).then(() =>{
         todoCopyBtn.innerText = `Copied!`;

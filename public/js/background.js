@@ -1,3 +1,5 @@
+
+/**show background image */
 window.drawBackgroundImage = function () {
     const bodyTag = document.querySelector("body");
     const backgrounds = ["0.jpg", "1.jpg", "2.jpg", "3.jpg", "4.jpg"];
@@ -7,6 +9,7 @@ window.drawBackgroundImage = function () {
     const chosenImage = backgrounds[Index];
     bodyTag.style.backgroundImage = `url("public/images/background/${chosenImage}")`;
 }
+/**hide backgroundImage */
 window.initBackgroundImage = function () {
     const bodyTag = document.querySelector("body");
     bodyTag.style.backgroundImage ="none";

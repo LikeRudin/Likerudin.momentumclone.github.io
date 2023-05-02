@@ -97,8 +97,7 @@ const getGreet = function(sentenceArray) {
 };
 
 
-/**
- * login 스크린을 치웁니다. */
+/** hide login screen and show mainScreen */
 const changeScreen = function (name){
     headText.innerText = `welcome, ${name}`
     loginScreen.classList.add(HIDDEN_CLASSNAME);
@@ -106,7 +105,7 @@ const changeScreen = function (name){
     const basicGreet = basicScreen.querySelector(".main-screen__basic__greet");
     basicGreet.innerText = getGreet(greetArray);
 }
-
+/** save submitted name */
 const handleLogin = function(event) {
     event.preventDefault();
     const input = loginForm.querySelector("input");
@@ -132,8 +131,9 @@ loginForm.addEventListener("submit", handleLogin);
 
 
 /**
- * 나중에 활성화면 플래그를 만들어 
- * 현재 활성 화면 이미지만 다른 이미지로 바꿔주게 해보자
+ * TODO:
+ * 일일히 hidden을 반복 추가 및 삭제하는 대신
+ *  flag를 만들어 현재 활성 화면치우게 해보자
  */
 
 
