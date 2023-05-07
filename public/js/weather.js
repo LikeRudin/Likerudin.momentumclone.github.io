@@ -34,7 +34,7 @@ const onGeoOk = function (position) {
         } = position;
 
     
-    localStorage.setItem("coords", JSON.stringify({latitude, longitude}));
+    sessionStorage.setItem("coords", JSON.stringify({latitude, longitude}));
     
     getWeather(latitude, longitude);
    
@@ -47,13 +47,12 @@ const onGeoError = function() {
     weather.innerText = "raining quokkas and kangaroos"
 }
 
-/**
- * get user's location information from localStorage if exists,
+/** get user's location information from sessionStorage if exists,
  * if doesn't, get that from navigator Object
  * @returns 
  */
 const loadWeather = function() {
-    const coords = localStorage.getItem("coords");
+    const coords = sessionStorage.getItem("coords");
     if (coords !== null) {
         const { latitude, longitude } = JSON.parse(coords);
         getWeather(latitude, longitude);
