@@ -119,19 +119,17 @@ const paintTodo = function(newTodo, todoKey) {
 
 
 /**load TODO from localStorage */
-const loadTodo = function() {
+const loadTodo = () => {
     todoStorage = {};
     const todoData = localStorage.getItem(TODOS_KEY);
     const loadedObj = JSON.parse(todoData);
     if (loadedObj !== null) {
-        const keyArray = Object.keys(loadedObj);
-        keyArray.forEach((key) => {
-            const todo = loadedObj[key];
-            todoStorage[key] = todo;
-            paintTodo(todo, key);
+        const todos = Object.entries(loadedObj);
+        todos.forEach(([todoKey, text]) => {
+            todoStorage[todoKey] = text;
+            paintTodo(text, todoKey);
         });
     }
-
 }
 
 /**load Dones from localStorage */
