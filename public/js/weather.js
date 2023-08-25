@@ -4,12 +4,6 @@ const cityElement = document.querySelector(`.weather__city`);
 
 const API_KEY = "7a38e6a93c3e57a925e618636e9ba5fb";
 
-const fetchDayWeather =  async (lan, lon) => {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lan}&lon=${lon}&appid=${API_KEY}&units=metric`;    
-    const response = await fetch(apiUrl)
-    const data = response.json();
-    return data;    
-}
 
 const paintWeather = (data) => {
     const {
@@ -26,8 +20,17 @@ const paintError = () => {
     weatherElement.innerText = "nothing";
 }
 
-const fetchFiveDayWeather = async (lat,lon)=> {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}`;
+const fetchDayWeather =  async (latAndLong) => {
+    const {latitude, longitude} = latAndLong;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`;    
+    const response = await fetch(apiUrl)
+    const data = response.json();
+    return data;    
+}
+
+const fetchFiveDayWeather = async (latAndLong)=> {
+    const {latitude, longitude} = latAndLong;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
     return data
@@ -51,7 +54,7 @@ const onGeoOk = (position) => {
 }
 
 const onGeoError = () => {
-    console.log("위치정보를 찾을 수 없습니다.");
+    throw new Error("위치정보를 찾을 수 없습니다.");
 }
 
 
@@ -59,26 +62,27 @@ const loadCoords = async () => {
     const coords = sessionStorage.getItem("coords");
 
     if (coords !== null) {
-        const { latitude, longitude } = JSON.parse(coords);
-        return {latitude, longitude}
+        const latAndLong = JSON.parse(coords);
+        return latAndLong
     } else {
-        const position = await new Promise((onGeoOk, onGeoError) =>{
+        const position = await new Promise((onGeoOk, onGeoError ) =>{
             navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
         });
-        const {latitude, longitude} = position.coords
-        return {latitude, longitude}
+        const latAndLong = position.coords
+        console.log(latAndLong)
+        return latAndLong
 }}
 
 
 /*initialize */
 const init =  async () => {
     try{
-        const {latitude, longitude} = await loadCoords();
+        const latAndLong = await loadCoords();
         
-        const weatherData = await fetchDayWeather(latitude, longitude);
+        const weatherData = await fetchDayWeather(latAndLong);
         paintWeather(weatherData);
         
-        const forecastData = await fetchFiveDayWeather(latitude, longitude);
+        const forecastData = await fetchFiveDayWeather(latAndLong);
         printFiveDayForecast(forecastData);
 
     } catch (error){
@@ -89,6 +93,7 @@ const init =  async () => {
 }
 
 init();
+
 
 
 
