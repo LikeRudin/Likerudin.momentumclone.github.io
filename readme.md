@@ -271,16 +271,8 @@ location.reload();
 
 todo와 마찬가지로 localStorage에 저장되어, 새로고침시에 기록이 불려온다.
 
-## 앞으로 더 해야할일
 
-css
+## 230902 TODO
 
-```login-screen에서 main-screen으로 이동할때,
-애니메이션 및 각 버튼 hover 애니메이션을 추가
-```
-
-readme
-
-```
-보기좋게 다시씁시다..
-```
+1. IFrame Cors 문제 해결
+2. 전체적 코드 계선
