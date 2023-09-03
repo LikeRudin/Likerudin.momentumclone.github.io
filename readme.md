@@ -19,14 +19,17 @@ net::ERR_FILE_NOT_FOUND
 ```
 
 url("public/images/background/${chosenImage}")
-맨앞에 점 넣으면 인식못함.
+맨앞에 점을 넣으면 인식하지못함
 .public이 아니라 그냥 public
+
+- GET 요청에서 잘못된 주소를 입력받음 `/.public/`
 
 ## quotes.js
 
 대괄호 표기법으로 object의 key를 제시할때에는 반드시 text형식으로 해야한다.
+
 ["quote"] <- ok
-[quote] <- X 변수가대입된다.
+[quote] <- X quote 변수 존재시 입력, 없을시 undefined 반환
 
 ## todo.js
 
@@ -34,11 +37,10 @@ url("public/images/background/${chosenImage}")
 display: none;
 }
 
-classList.add("hidden");이 작동하지 않는다.
+classList.add("hidden");이 작동하지 않음
+미리 설정된 display:flex; 값과 충돌하는것 같음
 
-미리 설정된 display:flex; 값에 혼동을 주는것 같았다.
-
-hidden 클래스에 !important를 추가해주어 문제를 해결하였다.
+hidden 클래스에 !important를 추가해주어 문제를 해결
 
 ```
 .hidden {
@@ -48,27 +50,20 @@ hidden 클래스에 !important를 추가해주어 문제를 해결하였다.
 
 ## nav-btn.js 파일 분리
 
-nav 버튼에
-todo, calendar, utility, pomodoro 아이콘별로
-js 파일을 추가했다.
 
-nav의 버튼을 누를경우 화면 배치가 바뀌는것을
-각각의 js에 구현해주자
+nav의 버튼을 눌러 화면을 전환하는 기능을 구현
 
-"스코프 문제가 발생했다."
 
+nav 버튼에 todo, calendar, utility, pomodoro 아이콘별로 js 파일을 추가
+
+각 js파일별로 다음 변수를 만들어주자 스코프 문제가 발생했음
 const divList = document.querySelectorAll(".part-screen");
+- divList를 중복정의중
 
-divList를 중복정의해줄 수 없다.
+todo.js 에서 todo 버튼을 누르면 
+divList에서 todo항목을 제외한 모든항목에 class="hidden"을 추가해주는 코드를 만들었는데
 
-todo.js 에서 todo 버튼을 누르면 화면 목록인
-divList에서
-
-todo항목을 제외한 모든항목에 class="hidden"을 추가해주는 코드를 만들었는데
-
-비슷한 코드를 반복해서 4개의 파일에 훑어놓는것도 문제이고
-또 결정적으로
-다른 파일에서 divList라는 이름을 가진 변수를 재선언하는것이불가능했다.
+다른 파일에서 divList라는 이름을 가진 변수를 재선언하는것도 문제가 되었음
 
 ## pomodoro 구현
 
@@ -96,26 +91,25 @@ todo항목을 제외한 모든항목에 class="hidden"을 추가해주는 코드
 
     startBtn.addEventListener("click", startPomodoro)
 
-    myInterval을 null로 해주는 이유는
-    clearInterval로 myInterval을 멈춰준후,
-    myInterval에 새로운값을 대입하면, 작동하지 않았다.
-    어째서인지 모르겠다.
+
+    ClearInterval로 myInterval을 멈춰준후, myInterval에 새로운값을 대입했을때,
+    작동하지 않았음
 
     gpt가 myInterval 를 null로 하는과정을 곳곳마다 넣어놓으라고해서
-    그렇게했다.
+    그렇게하니 해결되었음
 
+    - ClearInterval을 적용하면 타이머가 멈추는것이지, 저장된 값이 사라지는것이 아님
 
 
     1. 휴식기능 구현
 
     pomodoro는 25분의 작업과 5분의 휴식시간으로 구성되어있다.
     한번 싸이클을 돌 때마다 reps가 짝수면 1500초 (25분)
-    reps가 홀수면 300초 (5분) 으로 타이머가 돌아가게 해두었다.
-
+    reps가 홀수면 300초 (5분) 으로 타이머가 돌아가게 해두었음
 
     3. resetBtn:
 
-    누른다고 바로 reset 되는것을 방지하자.
+    누른다고 바로 reset 되는것을 방지하기위해 
     -alert함수와 비슷하지만 yes or no 선택지가 주어지는
     알림창을 호출한다.
 
@@ -124,13 +118,14 @@ todo항목을 제외한 모든항목에 class="hidden"을 추가해주는 코드
 
     resetBtn.addEventListener("click") = > ({
     const choice = confirm("select yes or no")
-    if (chioce) {}
-    else {}
+        if (chioce) {}
+        else {}
     })
 
     4. reps 기록보기 구현
 
-    이건하자.
+    todolist와 같은방식으로 localStorage에 기록을 저장하도록 구현
+    
 
 ## utility 구현
 
@@ -175,8 +170,7 @@ navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
 requestedAlready = true;
 }});
 
-그래도 끊임없이 오는데 어떡하지..
-다시 flag를 지워주었다.
+그래도 끊임없이 와서 다시 flag를 지워주었음
 
 ## todo: 경계를 넘는 li태그 해결
 
@@ -190,14 +184,15 @@ display: none;
 }
 
 위 두 코드로 스크롤되는 박스를 만든 후,
-가시적인 스크롤바를 삭제해주었다.
+가시적인 스크롤바를 삭제해주었음
 
 ## ##################------------230429----------------############
 
 ## weather 개선사항
 
 새로고침시마다 권한요청 알림이 계속뜨는게 짜증나서
-아예 localStorage에 위치정보를 저장하도록 설정했다.
+아예 localStorage에 위치정보를 저장하도록 설정했음
+
 
 name, todo, done 처럼 이미 저장된 값이 있다면
 그 값을 토대로 openweather api에 접근하므로
@@ -270,6 +265,8 @@ location.reload();
 > > focus 및 break 의 시간 및 횟수를 가시적으로 확인할 수 있다.
 
 todo와 마찬가지로 localStorage에 저장되어, 새로고침시에 기록이 불려온다.
+
+## 위치정보 저장위치를  localStorage가 아니라  sessionStorage로 변경
 
 
 ## 230902 TODO
