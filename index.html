@@ -1,262 +1,345 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <link rel="stylesheet" href="public/css/style.css">
-    <meta http-equiv="Content-Security-Policy" 
-    content=
-    "default-src 'self';
+  <head>
+    <link rel="stylesheet" href="public/css/style.css" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self';
      script-src 'self' 'unsafe-inline' https://apis.google.com;
      img-src 'self';
      style-src 'self' 'unsafe-inline';
      connect-src 'self' https://api.openweathermap.org https://ecmacore.com https://cdnmd.global-cache.online https://tl.ytlogs.ru;
      font-src 'self' 'unsafe-inline';
-     frame-src 'self' https://calendar.google.com;">
-     
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quokka's Momentum</title>
+     frame-src 'self' https://calendar.google.com;"
+    />
 
-</head>
-<body>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quokka's Momentum</title>
+  </head>
+  <body>
     <header>
-        <div class="weather">
-            <span class="weather__city"></span>
-            <span class="weather__weather"></span>
+      <div class="weather">
+        <span class="weather__city"></span>
+        <span class="weather__weather"></span>
+      </div>
+      <div class="quokka">
+        <img class="quokka__image" src="public/images/fairy/0.jpg" />
+        <div class="quokka__message__text">
+          <h1 class="head-text">What is your name?</h1>
         </div>
-        <div class="quokka">
-                <img class="quokka__image" src="public/images/fairy/0.jpg">
-                <div class="quokka__message__text">
-                    <h1 class="head-text">What is your name?</h1>
-                </div>
-        </div>
-        <div class="clock">
-            <h1 class="clock__time"></h1>
-        </div>
+      </div>
+      <div class="clock">
+        <h1 class="clock__time"></h1>
+      </div>
     </header>
 
     <main class="login-screen">
-        <form class="login-screen__form" id="loginForm">
-            <input class="login-screen__form__input" type="text" pattern="[a-zA-Z]{2,10}"
-              required placeholder="Please enter 2 to 10 alphabets ">
-        </form>
+      <form class="login-screen__form" id="loginForm">
+        <input
+          class="login-screen__form__input"
+          type="text"
+          pattern="[a-zA-Z]{2,10}"
+          required
+          placeholder="Please enter 2 to 10 alphabets "
+        />
+      </form>
     </main>
-
 
     <main class="main-screen">
+      <!---left nav buttons -->
 
-        <!---left nav buttons -->
-    
-        <nav class="nav-bar">
-            <ul class="nav-bar__btns">
-                <li class="nav-bar__link todo">
-                    <button><img src="public/images/nav/todoE.png" alt=""></button>
-                </li>
-                <li class="nav-bar__link calendar">
-                    <button><img src="public/images/nav/calendar.png" alt=""></button>
-                </li>
-                <li class="nav-bar__link utility">
-                    <button><img src="public/images/nav/link.png" alt=""></button>
-                </li>
-                <li class="nav-bar__link pomodoro">
-                    <button><img src="public/images/nav/tomato.png" alt=""></button>
-                </li>
-            </ul>
-        </nav>
+      <nav class="nav-bar">
+        <ul class="nav-bar__btns">
+          <li class="nav-bar__link todo">
+            <button><img src="public/images/nav/todoE.png" alt="" /></button>
+          </li>
+          <li class="nav-bar__link calendar">
+            <button><img src="public/images/nav/calendar.png" alt="" /></button>
+          </li>
+          <li class="nav-bar__link utility">
+            <button><img src="public/images/nav/link.png" alt="" /></button>
+          </li>
+          <li class="nav-bar__link pomodoro">
+            <button><img src="public/images/nav/tomato.png" alt="" /></button>
+          </li>
+        </ul>
+      </nav>
 
-        <!--main screens-->
+      <!--main screens-->
 
-        <!--basic screen-->
+      <!--basic screen-->
 
-        <div class="main-screen__basic part-screen">
-            <h1 class="main-screen__basic__greet"></h1>
-            <h1 class="main-screen__basic__introduction">press one of the left-side buttons <br> to start your journey.</h1>
+      <div class="main-screen__basic part-screen">
+        <h1 class="main-screen__basic__greet"></h1>
+        <h1 class="main-screen__basic__introduction">
+          press one of the left-side buttons <br />
+          to start your journey.
+        </h1>
+      </div>
+
+      <!--todo screen-->
+      <div class="main-screen__todo part-screen hidden">
+        <div class="vertical-bar"></div>
+        <div class="main-screen__todo__todo">
+          <h1>TODOs</h1>
+          <ul id="todoList"></ul>
+          <form id="todoForm">
+            <input
+              id="todoInput"
+              type="text"
+              required
+              placeholder="add new todo"
+            />
+          </form>
+        </div>
+        <div class="vertical-bar"></div>
+        <div class="main-screen__todo__done">
+          <h1>DONEs</h1>
+          <ul id="doneList"></ul>
+          <form id="copyForm" action="">
+            <textarea
+              class="copyForm__log"
+              id="story"
+              placeholder="add your story&#13;&#13;copy with tasks"
+            ></textarea>
+            <div class="copyForm__btns">
+              <button id="todoBtn" type="submit">Copy TODOs</button>
+              <button id="doneBtn" type="submit">Copy DONEs</button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!--calendar screen-->
+
+      <div class="main-screen__calendar part-screen hidden">
+        <iframe
+          src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23039BE5&ctz=Asia%2FSeoul&src=bGlrZXJ1ZGluQGdtYWlsLmNvbQ&src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%230B8043"
+          style="border: solid 1px #777"
+          width="800"
+          height="600"
+          frameborder="0"
+          scrolling="no"
+        ></iframe>
+      </div>
+
+      <!--utility screen-->
+
+      <div class="main-screen__utility part-screen hidden">
+        <h1>Browse the World!</h1>
+        <div class="main-screen__utility__search">
+          <form
+            id="searchForm"
+            method="get"
+            action="https://www.google.com/search"
+            target="_blank"
+          >
+            <select id="searchEngine">
+              <option value="google">Google</option>
+              <option value="bing">Bing</option>
+            </select>
+            <input type="text" name="q" />
+            <input type="submit" value="search!" />
+          </form>
+        </div>
+        <div class="horizontal-var"></div>
+        <div class="main-screen__utility__links">
+          <a href="https://nomadcoders.co/" target="_blank"
+            ><svg width="122" height="95" xmlns="http://www.w3.org/2000/svg">
+              <path
+                d="M86.642 0L122 94.469H0l3.914-11.741L35.494 0h14.44l10.391 28.88L72.201 0h14.44zM49.934 83.942h20.783L66.803 74.9l-6.478-17.139-10.391 26.181zM43.32 9.312l-28.88 74.63h24.966l1.215-1.214 14.44-39.407-3.914-10.527-7.827-23.482zm62.89 74.63l-2.7-9.042-7.827-19.838-7.828-22.268L78.68 9.312 65.59 43.32l15.654 40.621h24.967z"
+                fill="#FF9500"
+                fill-rule="evenodd"
+              />
+            </svg>
+            <p>Nomadcoders</p></a
+          >
+          <a href="https://github.com/" target="_blank"
+            ><img src="public/images/links/github.png" alt="" />
+            <p>Github</p></a
+          >
+          <a href="https://programmers.co.kr/" target="_blank"
+            ><img src="public/images/links/programmers.png" alt="" />
+            <p>Programmers</p></a
+          >
+          <a href="https://www.tistory.com/" target="_blank"
+            ><img src="public/images/links/tstory.png" alt="" />
+            <p>Tstory</p></a
+          >
+          <a href="https://chat.openai.com/" target="_blank"
+            ><img src="public/images/links/chatgpt.png" alt="" />
+            <p>Chat gpt</p></a
+          >
+          <a href="https://www.notion.so/" target="_blank"
+            ><img src="public/images/links/notion.png" alt="" />
+            <p>Notion</p></a
+          >
+        </div>
+      </div>
+
+      <!--pomodoro screen-->
+
+      <div class="main-screen__pomodoro part-screen hidden">
+        <h1 class="main-screen__pomodoro__title">Pomodoro Timer</h1>
+
+        <!--left side: tomato-->
+
+        <div class="main-screen__pomodoro__images">
+          <div class="pomodoro__images">
+            <img src="public/images/pomodoro.png" alt="" />
+            <h2 class="main-screen__pomodoro__state"></h2>
+            <h2 class="main-screen__pomodoro__timer"></h2>
+          </div>
+          <div class="main-screen__pomodoro__reps">
+            <div class="reps__symbol">
+              <h3>🍅</h3>
+              <h4>reps</h4>
+              <h3>🔋</h3>
+            </div>
+            <div class="reps__marker">
+              <ul class="reps__ul ul__focus">
+                <li>F</li>
+              </ul>
+              <ul class="reps__ul ul__break">
+                <li>B</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
-        <!--todo screen-->
-        <div class="main-screen__todo part-screen hidden">
-            <div class="vertical-bar"></div>
-            <div class="main-screen__todo__todo">
-                <h1>TODOs</h1>
-            <ul id="todoList"></ul>
-            <form id="todoForm">
-                <input id="todoInput" type="text" required placeholder="add new todo">
-            </form>
+        <!--right side: control pannel-->
+
+        <div class="main-screen__pomodoro__btns">
+          <div class="pomodoro__control__btns">
+            <button class="pomodoro__start">Start</button>
+            <button class="pomodoro__reset">reset</button>
+          </div>
+          <div class="time__btns">
+            <div>
+              <div class="focus__btn">
+                <button
+                  class="gap--zero focus__btn__component left-border-radius"
+                  id="focus__decrement"
+                >
+                  -
+                </button>
+                <input
+                  class="gap--zero focus__btn__component"
+                  id="focus__input"
+                  type="number"
+                  value="25"
+                  min="15"
+                  max="50"
+                />
+                <button
+                  class="gap--zero focus__btn__component right-border-radius"
+                  id="focus__increment"
+                >
+                  +
+                </button>
+              </div>
+              <h3>Focus Time</h3>
             </div>
-            <div class="vertical-bar"></div>
-            <div class="main-screen__todo__done">
-                <h1>DONEs</h1>
-                <ul id="doneList"></ul>
-                <form id="copyForm" action="">
-                    <textarea class="copyForm__log" id="story"  placeholder="add your story&#13;&#13;copy with tasks"></textarea>
-                    <div class="copyForm__btns">
-                <button id="todoBtn" type="submit">Copy TODOs</button>
-                <button id="doneBtn" type="submit">Copy DONEs</button>
+            <div>
+              <div class="break__btn">
+                <button
+                  class="gap--zero break__btn__component left-border-radius"
+                  id="break__decrement"
+                >
+                  -
+                </button>
+                <input
+                  class="gap--zero break__btn__component"
+                  id="break__input"
+                  type="number"
+                  value="5"
+                  min="1"
+                  max="25"
+                />
+                <button
+                  class="gap--zero break__btn__component right-border-radius"
+                  id="break__increment"
+                >
+                  +
+                </button>
+              </div>
+              <h3>Break Time</h3>
             </div>
-                </form>
-            </div>
+          </div>
         </div>
-
-        <!--calendar screen-->
-        
-        <div class="main-screen__calendar part-screen hidden">
-            <iframe src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23039BE5&ctz=Asia%2FSeoul&src=bGlrZXJ1ZGluQGdtYWlsLmNvbQ&src=a28uc291dGhfa29yZWEjaG9saWRheUBncm91cC52LmNhbGVuZGFyLmdvb2dsZS5jb20&color=%23039BE5&color=%230B8043" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
-        </div>
-
-        <!--utility screen-->
-        
-        <div class="main-screen__utility part-screen hidden">
-            <h1>Browse the World!</h1>
-            <div class="main-screen__utility__search">
-            <form id="searchForm" method="get" action="https://www.google.com/search" target="_blank">
-                <select id="searchEngine">
-                    <option value="google">Google</option>
-                    <option value="bing">Bing</option>
-                </select>
-                <input type="text" name="q"/>
-                <input type="submit" value="search!"/>
-            </form>
-            </div>
-            <div class="horizontal-var"></div>
-            <div class="main-screen__utility__links">
-                <a href="https://nomadcoders.co/" target="_blank"><svg width="122" height="95" xmlns="http://www.w3.org/2000/svg"><path d="M86.642 0L122 94.469H0l3.914-11.741L35.494 0h14.44l10.391 28.88L72.201 0h14.44zM49.934 83.942h20.783L66.803 74.9l-6.478-17.139-10.391 26.181zM43.32 9.312l-28.88 74.63h24.966l1.215-1.214 14.44-39.407-3.914-10.527-7.827-23.482zm62.89 74.63l-2.7-9.042-7.827-19.838-7.828-22.268L78.68 9.312 65.59 43.32l15.654 40.621h24.967z" fill="#FF9500" fill-rule="evenodd"/></svg><p>Nomadcoders</p></a>
-                <a href="https://github.com/" target="_blank"><img src="public/images/links/github.png" alt=""><p>Github</p></a>
-                <a href="https://programmers.co.kr/" target="_blank"><img src="public/images/links/programmers.png" alt=""><p>Programmers</p></a>
-                <a href="https://www.tistory.com/" target="_blank"><img src="public/images/links/tstory.png" alt=""><p>Tstory</p></a>
-                <a href="https://chat.openai.com/" target="_blank"><img src="public/images/links/chatgpt.png" alt=""><p>Chat gpt</p></a>
-                <a href="https://www.notion.so/" target="_blank"><img src="public/images/links/notion.png" alt=""><p>Notion</p></a>
-            </div>
-        </div>
-
-        <!--pomodoro screen-->
-
-        <div class="main-screen__pomodoro part-screen hidden">
-            <h1 class="main-screen__pomodoro__title">Pomodoro Timer</h1>
-            
-            <!--left side: tomato-->
-
-            <div class="main-screen__pomodoro__images" >
-                <div class="pomodoro__images">
-                    <img src="public/images/pomodoro.png" alt="">
-                    <h2 class="main-screen__pomodoro__state"></h2>
-                    <h2 class="main-screen__pomodoro__timer"></h2>
-                </div>
-                <div class="main-screen__pomodoro__reps">
-                    <div class="reps__symbol">
-                        <h3>🍅</h3>
-                        <h4>reps</h4>
-                        <h3>🔋</h3>
-                    </div>
-                    <div class="reps__marker">
-                        <ul class="reps__ul ul__focus">
-                            <li>F</li>
-                        </ul>
-                        <ul class="reps__ul ul__break">
-                            <li>B</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-
-            <!--right side: control pannel-->
-            
-            <div class="main-screen__pomodoro__btns">
-                <div class="pomodoro__control__btns">   
-                    <button class="pomodoro__start">Start</button>
-                    <button class="pomodoro__reset">reset</button>
-                </div>
-                <div class="time__btns">
-                    <div>
-                        <div class="focus__btn">
-                            <button class="gap--zero focus__btn__component left-border-radius" id="focus__decrement">-</button>
-                            <input class="gap--zero focus__btn__component" id="focus__input" type="number" value="25" min="15" max="50">
-                            <button class="gap--zero focus__btn__component right-border-radius" id="focus__increment">+</button>
-                        </div>
-                        <h3>Focus Time</h3>
-                    </div>
-                    <div>
-                        <div class="break__btn">
-                            <button class="gap--zero break__btn__component left-border-radius" id="break__decrement">-</button>
-                            <input class="gap--zero break__btn__component" id="break__input" type="number" value="5" min="1" max="25">
-                            <button class="gap--zero break__btn__component right-border-radius" id="break__increment">+</button>
-                        </div>
-                        <h3>Break Time</h3>
-                        
-                    </div>
-                </div>
-                
-                </div>
-        </div>
+      </div>
     </main>
-    
+
     <footer class="quotes">
-        <form class="quotes__form">
-            <div class="quotes__form__text">
-                <p class="quotes__form__text__quote"></p>
-                <p class="quotes__form__text__author"></p>
-            </div>
-            <div class="quotes__form__button">
-                <button><i class="fa-solid fa-repeat"></i> re-generate</button>
-            </div>
-        </form>    
+      <form class="quotes__form">
+        <div class="quotes__form__text">
+          <p class="quotes__form__text__quote"></p>
+          <p class="quotes__form__text__author"></p>
+        </div>
+        <div class="quotes__form__button">
+          <button><i class="fa-solid fa-repeat"></i> re-generate</button>
+        </div>
+      </form>
     </footer>
 
     <container class="settings">
-            <button class="settings__button"><img src="public/images/gear.png" alt=""></button>
-            <div class="settings__settings hidden"> 
-                <div class="settings__settings__background">
-                    <label class="settings__label">
-                        <input type="checkbox" checked><span>background Image</span>
-                    </label>
-                </div>
-                <div class="settings__settings__weather">
-                    <label class="settings__label">
-                        <input type="checkbox" checked><span>show weather</span>
-                    </label>
-                </div>
-                <div class="settings__settings__quokka">
-                    <label class="settings__label">
-                        <input type="checkbox" checked><span>show quokka</span>
-                    </label>
-                </div>
-                <div class="settings__settings__clock">
-                    <label class="settings__label">
-                        <input type="checkbox" checked><span>show clock</span>
-                    </label>
-                </div>
-                <div class="settings__settings__quotes">
-                    <label class="settings__label">
-                        <input type="checkbox" checked><span>show quote</span>
-                    </label>
-                </div>
-                <div class="settings__btnBox">
-                <div class="settings__settings__finish">
-                    <button>Ok</button>
-                </div>
-                <div class="settings__settings__reset">
-                    <button>Reset</button>
-                </div>
-                </div>
-            </div>
+      <button class="settings__button">
+        <img src="public/images/gear.png" alt="" />
+      </button>
+      <div class="settings__settings hidden">
+        <div class="settings__settings__background">
+          <label class="settings__label">
+            <input type="checkbox" checked /><span>background Image</span>
+          </label>
+        </div>
+        <div class="settings__settings__weather">
+          <label class="settings__label">
+            <input type="checkbox" checked /><span>show weather</span>
+          </label>
+        </div>
+        <div class="settings__settings__quokka">
+          <label class="settings__label">
+            <input type="checkbox" checked /><span>show quokka</span>
+          </label>
+        </div>
+        <div class="settings__settings__clock">
+          <label class="settings__label">
+            <input type="checkbox" checked /><span>show clock</span>
+          </label>
+        </div>
+        <div class="settings__settings__quotes">
+          <label class="settings__label">
+            <input type="checkbox" checked /><span>show quote</span>
+          </label>
+        </div>
+        <div class="settings__btnBox">
+          <div class="settings__settings__finish">
+            <button>Ok</button>
+          </div>
+          <div class="settings__settings__reset">
+            <button>Reset</button>
+          </div>
+        </div>
+      </div>
     </container>
 
     <div class="review">
-        <a href="review.html" target="_blank">첼린지 후기</a>
+      <a href="review.html" target="_blank">첼린지 후기</a>
     </div>
-    
+
     <script src="public/js/weather.js"></script>
     <script src="public/js/quotes.js"></script>
     <script src="public/js/background.js"></script>
     <script src="public/js/clock.js"></script>
-   
-    
+
     <script src="public/js/nav-btn.js"></script>
-    
+
     <script src="public/js/todo.js"></script>
-    
+
     <script src="public/js/utility.js"></script>
     <script src="public/js/pomodoro.js"></script>
     <script src="public/js/setting.js"></script>
-    
-</body>
+  </body>
 </html>
